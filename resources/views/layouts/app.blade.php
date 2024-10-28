@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@yield('title', 'Bienvenue')</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="/css/app.css">
+    <script src="/js/app.js" defer></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ route('home') }}">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('etudiants.index') }}">Étudiants</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('matieres.index') }}">Matières</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('notes.index') }}">Notes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('specialites.index') }}">Specialités</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('villes.index') }}">Villes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('inscriptions.index') }}">Inscriptions</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        @yield('content')
+    </div>
+
+    <footer class="bg-light text-center py-4">
+        <p>&copy; {{ date('Y') }} Abdelbari Guenichi. All rights reserved.</p>
+    </footer>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
