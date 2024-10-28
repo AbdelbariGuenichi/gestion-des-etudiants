@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<title>@yield('title', 'Mat')</title>
+<title>@yield('title', 'Matieres')</title>
 
 @section('content')
 <h1>Liste des Matières</h1>
