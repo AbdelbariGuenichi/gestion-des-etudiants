@@ -3,7 +3,7 @@
 @section('content')
 <h1 class="text-center">Liste des Spécialités</h1>
 <div class="d-flex justify-content-center mb-4">
-    <button class="btn btn-primary" data-toggle="modal" data-target="#specialiteModal">Ajouter une Spécialité</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#specialiteModal">Ajouter une Spécialité</button>
 </div>
 <div class="container mt-5">
     @if(session('error'))
@@ -61,7 +61,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="specialiteModalLabel">Ajouter une Spécialité</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -89,7 +89,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editSpecialiteModalLabel">Modifier une Spécialité</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -118,7 +118,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteSpecialiteModalLabel">Supprimer une Spécialité</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>

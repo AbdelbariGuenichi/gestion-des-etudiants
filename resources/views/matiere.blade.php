@@ -21,7 +21,7 @@
     @endif
 
     <div class="d-flex justify-content-center mb-4">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#matiereModal">Ajouter une Matière</button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#matiereModal">Ajouter une Matière</button>
     </div>
 
     @if(isset($matieres) && $matieres->count() > 0)
@@ -71,7 +71,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="matiereModalLabel">Ajouter une Matière</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>

@@ -4,7 +4,7 @@
 @section('content')
 <h1 class="text-center mt-5">Liste des Notes</h1>
 <div class="d-flex justify-content-center mb-4">
-    <button class="btn btn-primary" data-toggle="modal" data-target="#noteModal">Ajouter un Note</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#noteModal">Ajouter un Note</button>
 </div>
 <div class="container mt-4">
     @if(session('error'))
@@ -72,7 +72,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="noteModalLabel">Ajouter une Note</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -89,7 +89,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editNoteModalLabel">Modifier une Note</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -135,7 +135,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteNoteModalLabel">Supprimer une Note</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>

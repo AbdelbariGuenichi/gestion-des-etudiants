@@ -4,7 +4,7 @@
 @section('content')
 <h1 class="text-center">Liste des Inscriptions</h1>
 <div class="d-flex justify-content-center mb-4">
-    <button class="btn btn-primary" data-toggle="modal" data-target="#inscriptionModal">Ajouter une Inscription</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inscriptionModal">Ajouter une Inscription</button>
 </div>
 <div class="container mt-5">
     @if(session('error'))
@@ -72,7 +72,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="inscriptionModalLabel">Ajouter une Inscription</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -116,7 +116,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editInscriptionModalLabel">Modifier une Inscription</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -161,7 +161,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteInscriptionModalLabel">Supprimer une Inscription</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>

@@ -4,7 +4,7 @@
 @section('content')
 <h1 class="text-center">Liste des Villes</h1>
 <div class="d-flex justify-content-center mb-4">
-    <button class="btn btn-primary" data-toggle="modal" data-target="#villeModal">Ajouter une Ville</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#villeModal">Ajouter une Ville</button>
 </div>
 <div class="container mt-5">
     @if(session('error'))
@@ -42,10 +42,10 @@
                         <td>{{ $ville->DesignationVilles }}</td>
                         <td>
                             <div class="d-inline-flex align-items-center">
-                                <button class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#editVilleModal" onclick="editVille({{ json_encode($ville) }})">
+                                <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#editVilleModal" onclick="editVille({{ json_encode($ville) }})">
                                     Modifier
                                 </button>
-                                <button class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteVilleModal" onclick="deleteVille('{{ $ville->id }}')">
+                                <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteVilleModal" onclick="deleteVille('{{ $ville->id }}')">
                                     Supprimer
                                 </button>
                             </div>
@@ -66,7 +66,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="villeModalLabel">Ajouter une Ville</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -94,7 +94,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editVilleModalLabel">Modifier une Ville</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -123,7 +123,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteVilleModalLabel">Supprimer une Ville</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
