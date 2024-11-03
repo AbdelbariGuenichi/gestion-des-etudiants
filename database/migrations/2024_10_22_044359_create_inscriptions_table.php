@@ -8,15 +8,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('inscriptions', function (Blueprint $table) {
-            $table->string('Nce');
+            $table->string('nci');
             $table->string('CodeSp');
             $table->date('DateInscription');
-            $table->primary(['Nce', 'CodeSp', 'DateInscription']);
+            $table->primary('Nci');
             $table->string('niveau');
             $table->string('resultatFinale');
             $table->string('Mention');
             $table->timestamps();
-            $table->foreign('Nce')->references('nci')->on('etudiants')->onDelete('cascade');
+            $table->foreign('nci')->references('nci')->on('etudiants')->onDelete('cascade');
             $table->foreign('CodeSp')->references('CodeSp')->on('specialites')->onDelete('cascade');
         });
     }

@@ -61,7 +61,7 @@
                                     <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#editEtudiantModal" onclick="editEtudiant({{ json_encode($etudiant) }})">
                                         Modifier
                                     </button>
-                                    <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bss-target="#deleteEtudiantModal" onclick="deleteEtudiant('{{ $etudiant->Nce }}')">
+                                    <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteEtudiantModal" onclick="deleteEtudiant('{{ $etudiant->Nce }}')">
                                         Supprimer
                                     </button>
                                 </div>
@@ -82,9 +82,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="etudiantModalLabel">Ajouter un Étudiant</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 @include('forms.etudiant-form')
@@ -99,9 +97,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editEtudiantModalLabel">Modifier un Étudiant</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="editEtudiantForm" method="POST" action="">
@@ -152,9 +148,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteEtudiantModalLabel">Supprimer un Étudiant</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>Êtes-vous sûr de vouloir supprimer cet étudiant?</p>

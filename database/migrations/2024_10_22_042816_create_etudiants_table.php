@@ -10,15 +10,15 @@ class CreateEtudiantsTable extends Migration
     {
         if (!Schema::hasTable('etudiants')) {
             Schema::create('etudiants', function (Blueprint $table) {
-                $table->unsignedBigInteger('Nce')->autoIncrement();
-                $table->string('nci')->unique();
+                $table->unsignedBigInteger('Nce')->unique();
+                $table->string('nci');
                 $table->string('Nom');
                 $table->string('Prenom');
                 $table->date('DateNaissance');
                 $table->string('CpLieuNaissance');
                 $table->string('Adresse');
                 $table->string('CpAdresse');
-                $table->timestamps();
+                $table->timestamps();             $table->primary('nci');
                 $table->foreign('CpLieuNaissance')->references('cpVilles')->on('villes')->onDelete('cascade');
                 $table->foreign('CpAdresse')->references('cpVilles')->on('villes')->onDelete('cascade');
             });

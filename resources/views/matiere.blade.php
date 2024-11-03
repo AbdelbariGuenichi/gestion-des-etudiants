@@ -47,10 +47,10 @@
                         <td>{{ htmlspecialchars((string)$matiere->credit) }}</td>
                         <td>
                             <div class="d-inline-flex align-items-center">
-                                <button class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#editMatiereModal" onclick="editMatiere({{ json_encode($matiere) }})">
+                                <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#editMatiereModal" onclick="editMatiere({{ json_encode($matiere) }})">
                                     Modifier
                                 </button>
-                                <button class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteMatiereModal" onclick="deleteMatiere('{{ $matiere->CodeMat }}')" >
+                                <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteMatiereModal" onclick="deleteMatiere('{{ $matiere->CodeMat }}')" >
                                     Supprimer
                                 </button>
                             </div>
@@ -71,9 +71,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="matiereModalLabel">Ajouter une Matière</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 @include('forms.matiere-form')
@@ -88,9 +86,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editMatiereModalLabel">Modifier une Matière</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="editMatiereForm" method="POST" action="">
@@ -129,9 +125,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteMatiereModalLabel">Supprimer une Matière</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>Êtes-vous sûr de vouloir supprimer cette matière ?</p>

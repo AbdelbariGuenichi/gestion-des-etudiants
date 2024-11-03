@@ -38,10 +38,10 @@
                         <td>{{ $specialite->DesignationSp }}</td>
                         <td>
                             <div class="d-inline-flex align-items-center">
-                                <button class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#editSpecialiteModal" onclick="editSpecialite({{ json_encode($specialite) }})">
+                                <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#editSpecialiteModal" onclick="editSpecialite({{ json_encode($specialite) }})">
                                     Modifier
                                 </button>
-                                <button class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteSpecialiteModal" onclick="deleteSpecialite('{{ $specialite->CodeSp }}')">
+                                <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteSpecialiteModal" onclick="deleteSpecialite('{{ $specialite->CodeSp }}')">
                                     Supprimer
                                 </button>
                             </div>
@@ -61,9 +61,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="specialiteModalLabel">Ajouter une Spécialité</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form method="POST" action="{{ route('specialites.store') }}">
@@ -89,9 +87,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editSpecialiteModalLabel">Modifier une Spécialité</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="editSpecialiteForm" method="POST" action="">
@@ -118,9 +114,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteSpecialiteModalLabel">Supprimer une Spécialité</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>Êtes-vous sûr de vouloir supprimer cette spécialité?</p>

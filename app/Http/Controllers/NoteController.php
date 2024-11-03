@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -9,10 +10,8 @@ class NoteController extends Controller
 {
     public function index()
     {
-
-            $notes = DB::table('notes')->get();
-            return view('note', compact('notes'));
-
+        $notes = DB::table('notes')->get();
+        return view('note', compact('notes'));
     }
 
     public function store(Request $request)
@@ -26,8 +25,8 @@ class NoteController extends Controller
             'resultat' => 'required|string',
         ], [
             'required' => 'Le champ :attribute est obligatoire.',
-            'exists' => ':attribute n\'existe pas.',
-            'date' => 'Le champ :attribute n\'est pas une date valide.',
+            'exists' => ':attribute n\'existe pas dans la base de données.',
+            'date' => 'Le champ :attribute doit être une date valide.',
             'string' => 'Le champ :attribute doit être une chaîne de caractères.',
             'numeric' => 'Le champ :attribute doit être un nombre.',
         ]);
@@ -39,7 +38,7 @@ class NoteController extends Controller
         }
 
         DB::table('notes')->insert([
-            'nci' => $request->nci,
+            'Nce' => $request->nci, // Updated to match the correct column name
             'CodeMat' => $request->CodeMat,
             'DateResultat' => $request->DateResultat,
             'NoteControle' => $request->NoteControle,
@@ -49,7 +48,7 @@ class NoteController extends Controller
             'updated_at' => now(),
         ]);
 
-        return redirect()->route('notes.index')->with('success', 'Note enregistrée avec succès');
+        return redirect()->route('notes.index')->with('success', 'Note enregistrée avec succès.');
     }
 
     public function update(Request $request, $nci)
@@ -62,8 +61,8 @@ class NoteController extends Controller
             'resultat' => 'required|string',
         ], [
             'required' => 'Le champ :attribute est obligatoire.',
-            'exists' => ':attribute n\'existe pas.',
-            'date' => 'Le champ :attribute n\'est pas une date valide.',
+            'exists' => ':attribute n\'existe pas dans la base de données.',
+            'date' => 'Le champ :attribute doit être une date valide.',
             'string' => 'Le champ :attribute doit être une chaîne de caractères.',
             'numeric' => 'Le champ :attribute doit être un nombre.',
         ]);
@@ -76,7 +75,7 @@ class NoteController extends Controller
 
         // Update the note
         DB::table('notes')
-            ->where('nci', $nci)
+            ->where('Nce', $nci) // Updated to match the correct column name
             ->update([
                 'CodeMat' => $request->CodeMat,
                 'DateResultat' => $request->DateResultat,
@@ -86,16 +85,16 @@ class NoteController extends Controller
                 'updated_at' => now(),
             ]);
 
-        return redirect()->route('notes.index')->with('success', 'Note modifiée avec succès');
+        return redirect()->route('notes.index')->with('success', 'Note modifiée avec succès.');
     }
 
     public function destroy(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nci' => 'required|string|exists:notes,Nce',
+            'nci' => 'required|string|exists:notes,Nce', // Make sure this matches the column name
         ], [
             'required' => 'Le champ :attribute est obligatoire.',
-            'exists' => ':attribute n\'existe pas.',
+            'exists' => ':attribute n\'existe pas dans la base de données.',
         ]);
 
         if ($validator->fails()) {
@@ -104,8 +103,9 @@ class NoteController extends Controller
                 ->withInput();
         }
 
-        DB::table('notes')->where('nci', $request->Nce)->delete();
+        // Delete the note
+        DB::table('notes')->where('Nce', $request->nci)->delete(); // Updated to match the correct column name
 
-        return redirect()->route('notes.index')->with('success', 'Note supprimée avec succès');
+        return redirect()->route('notes.index')->with('success', 'Note supprimée avec succès.');
     }
 }
