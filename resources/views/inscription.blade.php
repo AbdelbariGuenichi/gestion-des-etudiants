@@ -48,10 +48,10 @@
                         <td>{{ $inscription->Mention }}</td>
                         <td>
                             <div class="d-inline-flex align-items-center">
-                                <button class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#editInscriptionModal" onclick="editInscription({{ json_encode($inscription) }})">
+                                <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#editInscriptionModal" onclick="editInscription({{ json_encode($inscription) }})">
                                     Modifier
                                 </button>
-                                <button class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteInscriptionModal" onclick="deleteInscription('{{ $inscription->nci }}', '{{ $inscription->CodeSp }}', '{{ $inscription->DateInscription }}')">
+                                <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteInscriptionModal" onclick="deleteInscription('{{ $inscription->nci }}', '{{ $inscription->CodeSp }}', '{{ $inscription->DateInscription }}')">
                                     Supprimer
                                 </button>
                             </div>
@@ -72,9 +72,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="inscriptionModalLabel">Ajouter une Inscription</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="{{ route('inscriptions.store') }}" method="POST">
@@ -116,38 +114,43 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editInscriptionModalLabel">Modifier une Inscription</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editInscriptionForm" method="POST" action="">
+                <form id="editInscriptionForm" method="POST" action="{{ route('inscriptions.update', $inscription->nci) }}">
                     @csrf
                     @method('PUT')
+
                     <div class="form-group">
                         <label for="editNci">NCI</label>
-                        <input type="text" name="nci" class="form-control" id="editNci" required readonly>
+                        <input type="text" name="nci" class="form-control" id="editNci" value="{{ $inscription->nci }}" required readonly>
                     </div>
+
                     <div class="form-group">
                         <label for="editCodeSp">Code Spécialité</label>
-                        <input type="text" name="CodeSp" class="form-control" id="editCodeSp" required>
+                        <input type="text" name="CodeSp" class="form-control" id="editCodeSp" value="{{ $inscription->CodeSp }}" required>
                     </div>
+
                     <div class="form-group">
                         <label for="editDateInscription">Date Inscription</label>
-                        <input type="date" name="DateInscription" class="form-control" id="editDateInscription" required>
+                        <input type="date" name="DateInscription" class="form-control" id="editDateInscription" value="{{ $inscription->DateInscription }}" required>
                     </div>
+
                     <div class="form-group">
                         <label for="editNiveau">Niveau</label>
-                        <input type="text" name="niveau" class="form-control" id="editNiveau" required>
+                        <input type="text" name="niveau" class="form-control" id="editNiveau" value="{{ $inscription->niveau }}" required>
                     </div>
+
                     <div class="form-group">
                         <label for="editResultatFinale">Résultat Final</label>
-                        <input type="text" name="resultatFinale" class="form-control" id="editResultatFinale" required>
+                        <input type="text" name="resultatFinale" class="form-control" id="editResultatFinale" value="{{ $inscription->resultatFinale }}" required>
                     </div>
+
                     <div class="form-group">
                         <label for="editMention">Mention</label>
-                        <input type="text" name="Mention" class="form-control" id="editMention" required>
+                        <input type="text" name="Mention" class="form-control" id="editMention" value="{{ $inscription->Mention }}" required>
                     </div>
+
                     <button type="submit" class="btn btn-primary mt-3">Enregistrer les modifications</button>
                 </form>
             </div>
@@ -161,9 +164,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteInscriptionModalLabel">Supprimer une Inscription</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>Êtes-vous sûr de vouloir supprimer cette inscription?</p>
@@ -173,7 +174,7 @@
                     <input type="hidden" name="nci" id="deleteInscriptionNci">
                     <input type="hidden" name="CodeSp" id="deleteInscriptionCodeSp">
                     <input type="hidden" name="DateInscription" id="deleteInscriptionDateInscription">
-                    <button type="submit" class="btn btn-danger mt-3">Supprimer</button>
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
                 </form>
             </div>
         </div>
@@ -183,20 +184,21 @@
 @endsection
 
 <script>
-    function editInscription(inscription) {
-        document.querySelector('#editInscriptionModal #editNci').value = inscription.nci;
-        document.querySelector('#editInscriptionModal #editCodeSp').value = inscription.CodeSp;
-        document.querySelector('#editInscriptionModal #editDateInscription').value = inscription.DateInscription;
-        document.querySelector('#editInscriptionModal #editNiveau').value = inscription.niveau;
-        document.querySelector('#editInscriptionModal #editResultatFinale').value = inscription.resultatFinale;
-        document.querySelector('#editInscriptionModal #editMention').value = inscription.Mention;
-        document.querySelector('#editInscriptionForm').action = `/inscriptions/${inscription.nci}/edit`;
-    }
+// function editInscription(inscription) {
+//     console.log('Editing inscription:', inscription);
+//     document.querySelector('#editInscriptionModal #editNci').value = inscription.nci;
+//     document.querySelector('#editInscriptionModal #editCodeSp').value = inscription.CodeSp;
+//     document.querySelector('#editInscriptionModal #editDateInscription').value = inscription.DateInscription;
+//     document.querySelector('#editInscriptionModal #editNiveau').value = inscription.niveau;
+//     document.querySelector('#editInscriptionModal #editResultatFinale').value = inscription.resultatFinale;
+//     document.querySelector('#editInscriptionModal #editMention').value = inscription.Mention;
 
-    function deleteInscription(nci, codeSp, dateInscription) {
-        document.querySelector('#deleteInscriptionNci').value = nci;
-        document.querySelector('#deleteInscriptionCodeSp').value = codeSp;
-        document.querySelector('#deleteInscriptionDateInscription').value = dateInscription;
-        document.querySelector('#deleteInscriptionForm').action = `/inscriptions/${nci}/delete`;
-    }
+// }
+
+function deleteInscription(nci, codeSp, dateInscription) {
+    console.log('Deleting inscription:', { nci, codeSp, dateInscription });
+    document.querySelector('#deleteInscriptionNci').value = nci;
+    document.querySelector('#deleteInscriptionCodeSp').value = codeSp;
+    document.querySelector('#deleteInscriptionDateInscription').value = dateInscription;
+}
 </script>

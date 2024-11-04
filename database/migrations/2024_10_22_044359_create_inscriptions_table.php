@@ -11,7 +11,7 @@ return new class extends Migration
             $table->string('nci');
             $table->string('CodeSp');
             $table->date('DateInscription');
-            $table->primary('Nci');
+            $table->primary('nci');
             $table->string('niveau');
             $table->string('resultatFinale');
             $table->string('Mention');

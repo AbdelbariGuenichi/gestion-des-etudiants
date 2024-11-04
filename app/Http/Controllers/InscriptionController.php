@@ -54,7 +54,7 @@ class InscriptionController extends Controller
     }
     public function update(Request $request, $nci)
     {
-        $validator = Validator::make($request->all(), [
+        $validatedData = $request->validate([
             'CodeSp' => 'required|string|max:255',
             'DateInscription' => 'required|date',
             'niveau' => 'required|string|max:255',
@@ -62,33 +62,39 @@ class InscriptionController extends Controller
             'Mention' => 'required|string|max:255',
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->route('inscriptions.index')
-                ->withErrors($validator)
-                ->withInput();
+        $updated = DB::table('inscriptions')
+            ->where('Nci', $nci) // Ensure you are using the correct primary key
+            ->where('CodeSp', $validatedData['CodeSp']) // Include other necessary conditions for composite key
+            ->where('DateInscription', $validatedData['DateInscription'])
+            ->update($validatedData + ['updated_at' => now()]); // Add updated_at timestamp
+
+        if ($updated) {
+            return redirect()->route('inscriptions.index')->with('success', 'Inscription modifiée avec succès.');
+        } else {
+            return redirect()->route('inscriptions.index')->with('error', 'Aucune inscription trouvée pour cette mise à jour.');
         }
-
-        DB::table('inscriptions')->where('nci', $nci)->update([
-            'CodeSp' => $request->CodeSp,
-            'DateInscription' => $request->DateInscription,
-            'niveau' => $request->niveau,
-            'resultatFinale' => $request->resultatFinale,
-            'Mention' => $request->Mention,
-            'updated_at' => now(),
-        ]);
-
-        return redirect()->route('inscriptions.index')->with('success', 'Inscription modifiée avec succès.');
     }
 
-    public function destroy($nci)
+    public function destroy(Request $request)
     {
-        // Ensure the inscription exists before attempting to delete
-        $deleted = DB::table('inscriptions')->where('nci', $nci)->delete();
+        $nci = $request->input('nci');
+        $CodeSp = $request->input('CodeSp');
+        $DateInscription = $request->input('DateInscription');
+
+        if (empty($nci) || empty($CodeSp) || empty($DateInscription)) {
+            return redirect()->route('inscriptions.index')->with('error', 'Identifiants requis non fournis.');
+        }
+
+        $deleted = DB::table('inscriptions')
+            ->where('nci', $nci)
+            ->where('CodeSp', $CodeSp)
+            ->where('DateInscription', $DateInscription)
+            ->delete();
 
         if ($deleted) {
             return redirect()->route('inscriptions.index')->with('success', 'Inscription supprimée avec succès.');
         } else {
-            return redirect()->route('inscriptions.index')->with('error', 'Inscription non trouvée.');
+            return redirect()->route('inscriptions.index')->with('error', 'Inscription non trouvée ou déjà supprimée.');
         }
     }
-}
+            }

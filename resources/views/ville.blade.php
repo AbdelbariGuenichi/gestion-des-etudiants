@@ -28,7 +28,6 @@
         <table class="table table-bordered table-striped">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
                     <th>Code Postal</th>
                     <th>Désignation Villes</th>
                     <th>Actions</th>
@@ -37,7 +36,6 @@
             <tbody>
                 @foreach($villes as $ville)
                     <tr>
-                        <td>{{ $ville->id }}</td>
                         <td>{{ $ville->cpVilles }}</td>
                         <td>{{ $ville->DesignationVilles }}</td>
                         <td>

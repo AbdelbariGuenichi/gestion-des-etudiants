@@ -18,3 +18,4 @@ Route::resource('/notes', NoteController::class);
 Route::resource('/specialites', SpecialiteController::class);
 Route::resource('/villes', VilleController::class);
 Route::resource('/inscriptions', InscriptionController::class);
+Route::put('/inscriptions/{nci}', [InscriptionController::class, 'update'])->name('inscriptions.update');
