@@ -18,7 +18,8 @@ class CreateEtudiantsTable extends Migration
                 $table->string('CpLieuNaissance');
                 $table->string('Adresse');
                 $table->string('CpAdresse');
-                $table->timestamps();             $table->primary('nci');
+                $table->timestamps();
+                $table->primary('nci');
                 $table->foreign('CpLieuNaissance')->references('cpVilles')->on('villes')->onDelete('cascade');
                 $table->foreign('CpAdresse')->references('cpVilles')->on('villes')->onDelete('cascade');
             });
