@@ -4,7 +4,7 @@
 @section('content')
 <h1 class="text-center mt-5">Liste des Notes</h1>
 <div class="d-flex justify-content-center mb-4">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#noteModal">Ajouter un Note</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" name="button-form" data-bs-target="#noteModal" disabled>Ajouter un Note</button>
 </div>
 <div class="container mt-4">
     @if(session('error'))
@@ -48,10 +48,10 @@
                             <td>{{ $note->resultat }}</td>
                             <td>
                                 <div class="d-inline-flex align-items-center">
-                                    <button class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#editNoteModal" onclick="editNote({{ json_encode($note) }})">
+                                    <button class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#editNoteModal" name="button-form" onclick="editNote({{ json_encode($note) }})" disabled>
                                         Modifier
                                     </button>
-                                    <button class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteNoteModal" onclick="deleteNote('{{ $note->nci }}')">
+                                    <button class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteNoteModal" name="button-form" onclick="deleteNote('{{ $note->nci }}')" disabled>
                                         Supprimer
                                     </button>
                                 </div>
@@ -148,7 +148,6 @@
     </div>
 </div>
 
-@endsection
 
 <script>
     function editNote(note) {
@@ -165,3 +164,6 @@
         document.getElementById('deleteNoteNce').value = Nce;
     }
 </script>
+
+@endsection
+

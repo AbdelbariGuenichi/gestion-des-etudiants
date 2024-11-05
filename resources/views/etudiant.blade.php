@@ -12,21 +12,10 @@
     @endif
 
     <div class="d-flex justify-content-center mb-4">
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ajouterEtudiantModal">Ajouter un Étudiant</button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ajouterEtudiantModal" name="button-form" disabled>Ajouter un Étudiant</button>
     </div>
 
     @if ($errors->any())
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const etudiantModalElement = document.getElementById('ajouterEtudiantModal');
-
-            if (etudiantModalElement) {
-                new bootstrap.Modal(etudiantModalElement).show();
-            } else {
-                console.error("Element with ID 'etudiantModal' not found in the DOM.");
-            }
-        });
-    </script>
         @endif
 
     @if(isset($etudiants) && $etudiants->count() > 0)
@@ -58,10 +47,10 @@
                             <td>{{ htmlspecialchars((string)$etudiant->CpAdresse) }}</td>
                             <td>
                                 <div class="d-inline-flex align-items-center">
-                                    <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#editEtudiantModal" onclick="editEtudiant({{ json_encode($etudiant) }})">
+                                    <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" name="button-form" data-bs-target="#editEtudiantModal" onclick="editEtudiant({{ json_encode($etudiant) }})" disabled>
                                         Modifier
                                     </button>
-                                    <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteEtudiantModal" onclick="deleteEtudiant('{{ $etudiant->Nce }}')">
+                                    <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" name="button-form" data-bs-target="#deleteEtudiantModal" onclick="deleteEtudiant('{{ $etudiant->Nce }}')" disabled>
                                         Supprimer
                                     </button>
                                 </div>

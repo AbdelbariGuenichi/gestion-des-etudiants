@@ -1,10 +1,12 @@
 @extends('layouts.app')
 @section('title', 'Spécialités')
 @section('content')
+
 <h1 class="text-center">Liste des Spécialités</h1>
 <div class="d-flex justify-content-center mb-4">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#specialiteModal">Ajouter une Spécialité</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#specialiteModal" name="button-form" disabled>Ajouter une Spécialité</button>
 </div>
+
 <div class="container mt-5">
     @if(session('error'))
         <div class="alert alert-danger">{{ session('error') }}</div>
@@ -38,12 +40,8 @@
                         <td>{{ $specialite->DesignationSp }}</td>
                         <td>
                             <div class="d-inline-flex align-items-center">
-                                <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#editSpecialiteModal" onclick="editSpecialite({{ json_encode($specialite) }})">
-                                    Modifier
-                                </button>
-                                <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteSpecialiteModal" onclick="deleteSpecialite('{{ $specialite->CodeSp }}')">
-                                    Supprimer
-                                </button>
+                                <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#editSpecialiteModal" name="button-form" disabled>Modifier</button>
+                                <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteSpecialiteModal" name="button-form" disabled>Supprimer</button>
                             </div>
                         </td>
                     </tr>
@@ -90,16 +88,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editSpecialiteForm" method="POST" action="">
+                <form id="editSpecialiteForm" method="POST" action="{{ route('specialites.update', '') }}">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
                         <label for="editCodeSp">Code Spécialité</label>
-                        <input type="text" name="CodeSp" class="form-control" id="editCodeSp" required readonly>
+                        <input type="text" name="CodeSp" class="form-control" id="editCodeSp" required readonly value="{{ $specialite->CodeSp }}">
                     </div>
                     <div class="form-group">
                         <label for="editDesignationSp">Désignation</label>
-                        <input type="text" name="DesignationSp" class="form-control" id="editDesignationSp" required>
+                        <input type="text" name="DesignationSp" class="form-control" id="editDesignationSp" required value="{{ $specialite->DesignationSp }}">
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Enregistrer les modifications</button>
                 </form>
@@ -118,10 +116,10 @@
             </div>
             <div class="modal-body">
                 <p>Êtes-vous sûr de vouloir supprimer cette spécialité?</p>
-                <form id="deleteSpecialiteForm" method="POST" action="{{ route('specialites.destroy', 'delete') }}">
+                <form id="deleteSpecialiteForm" method="POST" action="{{ route('specialites.destroy', '') }}">
                     @csrf
                     @method('DELETE')
-                    <input type="hidden" name="CodeSp" id="deleteSpecialiteCodeSp">
+                    <input type="hidden" name="CodeSp" id="deleteSpecialiteCodeSp" value="{{ $specialite->CodeSp }}">
                     <button type="submit" class="btn btn-danger mt-3">Supprimer</button>
                 </form>
             </div>
@@ -129,17 +127,5 @@
     </div>
 </div>
 
+
 @endsection
-
-<script>
-    function editSpecialite(specialite) {
-        document.querySelector('#editSpecialiteModal #editCodeSp').value = specialite.CodeSp;
-        document.querySelector('#editSpecialiteModal #editDesignationSp').value = specialite.DesignationSp;
-        document.querySelector('#editSpecialiteModal form').action = '{{ route('specialites.update', '') }}/' + specialite.CodeSp;
-    }
-
-    function deleteSpecialite(CodeSp) {
-    document.getElementById('deleteSpecialiteCodeSp').value = CodeSp;
-    document.querySelector('#deleteSpecialiteForm').action = '{{ route('specialites.destroy', '') }}/' + CodeSp;
-}
-</script>
