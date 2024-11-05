@@ -34,7 +34,7 @@
                             <label for="Adresse">Adresse</label>
                             <input type="text" name="Adresse" class="form-control" id="Adresse" placeholder="Enter Adresse" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label for="CpAdresse">Code Postal</label>
                             <input type="text" name="CpAdresse" class="form-control" id="CpAdresse" placeholder="Enter Code Postal" required>
                         </div>

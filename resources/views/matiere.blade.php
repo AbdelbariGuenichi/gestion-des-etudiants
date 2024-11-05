@@ -21,7 +21,7 @@
     @endif
 
     <div class="d-flex justify-content-center mb-4">
-        <button class="btn btn-primary" data-bs-toggle="modal" name="button-form" data-bs-target="#matiereModal" disabled>Ajouter une Matière</button>
+        <button class="btn btn-primary" data-bs-toggle="modal" name="button-form" data-bs-target="#matiereModal" >Ajouter une Matière</button>
     </div>
 
     @if(isset($matieres) && $matieres->count() > 0)
@@ -47,10 +47,10 @@
                         <td>{{ htmlspecialchars((string)$matiere->credit) }}</td>
                         <td>
                             <div class="d-inline-flex align-items-center">
-                                <button class="btn btn-success btn-sm m-1" name="button-form" data-bs-toggle="modal" data-bs-target="#editMatiereModal" onclick="editMatiere({{ json_encode($matiere) }})" disabled>
+                                <button class="btn btn-success btn-sm m-1" name="button-form" data-bs-toggle="modal" data-bs-target="#editMatiereModal" onclick="editMatiere({{ json_encode($matiere) }})" >
                                     Modifier
                                 </button>
-                                <button class="btn btn-danger btn-sm m-1" name="button-form" data-bs-toggle="modal" data-bs-target="#deleteMatiereModal" onclick="deleteMatiere('{{ $matiere->CodeMat }}')" disabled>
+                                <button class="btn btn-danger btn-sm m-1" name="button-form" data-bs-toggle="modal" data-bs-target="#deleteMatiereModal" onclick="deleteMatiere('{{ $matiere->CodeMat }}')" >
                                     Supprimer
                                 </button>
                             </div>

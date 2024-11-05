@@ -40,7 +40,7 @@
         @enderror
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-3">
         <label for="Mention">Mention:</label>
         <input type="text" class="form-control" id="Mention" name="Mention" value="{{ old('Mention') }}">
         @error('Mention')

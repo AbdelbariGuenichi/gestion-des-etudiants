@@ -12,7 +12,7 @@
     @endif
 
     <div class="d-flex justify-content-center mb-4">
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ajouterEtudiantModal" name="button-form" disabled>Ajouter un Étudiant</button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ajouterEtudiantModal" name="button-form" >Ajouter un Étudiant</button>
     </div>
 
     @if ($errors->any())
@@ -47,10 +47,10 @@
                             <td>{{ htmlspecialchars((string)$etudiant->CpAdresse) }}</td>
                             <td>
                                 <div class="d-inline-flex align-items-center">
-                                    <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" name="button-form" data-bs-target="#editEtudiantModal" onclick="editEtudiant({{ json_encode($etudiant) }})" disabled>
+                                    <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" name="button-form" data-bs-target="#editEtudiantModal" onclick="editEtudiant({{ json_encode($etudiant) }})" >
                                         Modifier
                                     </button>
-                                    <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" name="button-form" data-bs-target="#deleteEtudiantModal" onclick="deleteEtudiant('{{ $etudiant->Nce }}')" disabled>
+                                    <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" name="button-form" data-bs-target="#deleteEtudiantModal" onclick="deleteEtudiant('{{ $etudiant->Nce }}')" >
                                         Supprimer
                                     </button>
                                 </div>

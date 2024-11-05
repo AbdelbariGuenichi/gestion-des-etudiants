@@ -4,7 +4,7 @@
 
 <h1 class="text-center">Liste des Spécialités</h1>
 <div class="d-flex justify-content-center mb-4">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#specialiteModal" name="button-form" disabled>Ajouter une Spécialité</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#specialiteModal" name="button-form" >Ajouter une Spécialité</button>
 </div>
 
 <div class="container mt-5">
@@ -40,8 +40,8 @@
                         <td>{{ $specialite->DesignationSp }}</td>
                         <td>
                             <div class="d-inline-flex align-items-center">
-                                <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#editSpecialiteModal" name="button-form" disabled>Modifier</button>
-                                <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteSpecialiteModal" name="button-form" disabled>Supprimer</button>
+                                <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#editSpecialiteModal" name="button-form" >Modifier</button>
+                                <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteSpecialiteModal" name="button-form" >Supprimer</button>
                             </div>
                         </td>
                     </tr>

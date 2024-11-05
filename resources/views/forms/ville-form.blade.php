@@ -10,7 +10,7 @@
                             <label for="cpVilles">Code Postal</label>
                             <input type="text" name="cpVilles" class="form-control" id="cpVilles" placeholder="Enter Code Postal">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label for="DesignationVilles">Designation Villes</label>
                             <input type="text" name="DesignationVilles" class="form-control" id="DesignationVilles" placeholder="Enter Designation">
                         </div>

@@ -4,7 +4,7 @@
 @section('content')
 <h1 class="text-center">Liste des Inscriptions</h1>
 <div class="d-flex justify-content-center mb-4">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inscriptionModal" disabled>Ajouter une Inscription</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inscriptionModal" >Ajouter une Inscription</button>
 </div>
 <div class="container mt-5">
     @if(session('error'))
@@ -48,10 +48,10 @@
                         <td>{{ $inscription->Mention }}</td>
                         <td>
                             <div class="d-inline-flex align-items-center">
-                                <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#editInscriptionModal" onclick="editInscription({{ json_encode($inscription) }})" disabled>
+                                <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#editInscriptionModal" onclick="editInscription({{ json_encode($inscription) }})" >
                                     Modifier
                                 </button>
-                                <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteInscriptionModal" onclick="deleteInscription('{{ $inscription->nci }}', '{{ $inscription->CodeSp }}', '{{ $inscription->DateInscription }}')" disabled>
+                                <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteInscriptionModal" onclick="deleteInscription('{{ $inscription->nci }}', '{{ $inscription->CodeSp }}', '{{ $inscription->DateInscription }}')" >
                                     Supprimer
                                 </button>
                             </div>

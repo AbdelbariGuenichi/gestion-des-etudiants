@@ -4,7 +4,7 @@
 @section('content')
 <h1 class="text-center">Liste des Villes</h1>
 <div class="d-flex justify-content-center mb-4">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#villeModal" disabled>Ajouter une Ville</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#villeModal" >Ajouter une Ville</button>
 </div>
 <div class="container mt-5">
     @if(session('error'))
@@ -41,12 +41,12 @@
                         <td>
                             <div class="d-inline-flex align-items-center">
                                 <!-- Edit Button -->
-                                <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#editVilleModal{{ $ville->id }}" disabled>
+                                <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#editVilleModal{{ $ville->id }}" >
                                     Modifier
                                 </button>
 
                                 <!-- Delete Button -->
-                                <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteVilleModal{{ $ville->id }}" disabled>
+                                <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteVilleModal{{ $ville->id }}" >
                                     Supprimer
                                 </button>
                             </div>
