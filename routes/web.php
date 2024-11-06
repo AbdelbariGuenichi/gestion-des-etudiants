@@ -7,10 +7,16 @@ use App\Http\Controllers\NoteController;
 use App\Http\Controllers\SpecialiteController;
 use App\Http\Controllers\VilleController;
 use App\Http\Controllers\InscriptionController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\WelcomeController;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [LoginController::class, 'create'])->name('login');
+
+Route::post('/login', [LoginController::class, 'login'])->name('admin.login');
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
+
+Route::view('/welcome', 'welcome')->name('welcome');
 
 Route::resource('/etudiants', EtudiantController::class);
 Route::resource('/matieres', MatiereController::class);

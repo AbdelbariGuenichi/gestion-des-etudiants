@@ -9,7 +9,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
-        <a class="navbar-brand" href="{{ route('home') }}">Home</a>
+        <a class="navbar-brand" href="{{ route('welcome') }}">Home</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,12 +22,17 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('villes.index') }}">Villes</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('inscriptions.index') }}">Inscriptions</a></li>
             </ul>
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-danger mt-3">Logout</a>
+
+            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
         </div>
     </nav>
 
 
     <footer class="bg-light text-center py-4">
-        <h1 class="text-center">Bienvenue</h1>
+        <h1 class="text-center">Bienvenue Admin</h1>
         <p>&copy; {{ date('Y') }} Abdelbari Guenichi. All rights reserved.</p>
     </footer>
 
