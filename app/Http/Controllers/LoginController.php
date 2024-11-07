@@ -27,30 +27,6 @@ class LoginController extends Controller
         return back()->withErrors(['login' => 'Invalid credentials.']);
     }
 
-    /*public function login(Request $request)
-    {
-        $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
-        ]);
-
-        $admin = DB::table('admins')
-            ->where('username', $request->username)
-            ->first();
-
-        if ($admin && Hash::check($request->password, $admin->password)) {
-            Session::put('admin_id', $admin->id);
-            return redirect()->route('welcome-admin')->with('success', 'Logged in successfully!');
-        }
-
-        return redirect()->back()->withErrors(['username' => 'Admin Invalid'])->withInput();
-    }*/
-
-    // public function logout()
-    // {
-    //     Auth::guard('admin')->logout();
-    //     return redirect()->route('login')->with('success', 'Logged out successfully!');
-    // }
     public function logout(Request $request)
     {
     $request->session()->invalidate();
