@@ -38,7 +38,7 @@ class NoteController extends Controller
         }
 
         DB::table('notes')->insert([
-            'Nce' => $request->nci, // Updated to match the correct column name
+            'nci' => $request->nci, // Updated to match the correct column name
             'CodeMat' => $request->CodeMat,
             'DateResultat' => $request->DateResultat,
             'NoteControle' => $request->NoteControle,

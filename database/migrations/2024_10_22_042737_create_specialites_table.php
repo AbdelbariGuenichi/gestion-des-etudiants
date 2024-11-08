@@ -8,7 +8,7 @@ class CreateSpecialitesTable extends Migration
     {
         Schema::create('specialites', function (Blueprint $table) {
             $table->string('CodeSp')->primary();
-            $table->string('DesignationSp');
+            $table->string('DesignationSp')->unique();
             $table->timestamps();
         });
     }
