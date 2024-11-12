@@ -28,7 +28,7 @@
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Date de Naissance</th>
-                        <th>Lieu de Naissance</th>
+                        <th>CP Lieu de Naissance</th>
                         <th>Adresse</th>
                         <th>Code Postal</th>
                         <th>Actions</th>
@@ -37,14 +37,14 @@
                 <tbody>
                     @foreach($etudiants as $etudiant)
                         <tr class="text-center align-middle">
-                            <td>{{ htmlspecialchars((string)$etudiant->Nce) }}</td>
-                            <td>{{ htmlspecialchars((string)$etudiant->nci) }}</td>
-                            <td>{{ htmlspecialchars((string)$etudiant->Nom) }}</td>
-                            <td>{{ htmlspecialchars((string)$etudiant->Prenom) }}</td>
-                            <td>{{ htmlspecialchars((string)$etudiant->DateNaissance) }}</td>
-                            <td>{{ htmlspecialchars((string)$etudiant->CpLieuNaissance) }}</td>
-                            <td>{{ htmlspecialchars((string)$etudiant->Adresse) }}</td>
-                            <td>{{ htmlspecialchars((string)$etudiant->CpAdresse) }}</td>
+                            <td>{{ $etudiant->Nce}}</td>
+                            <td>{{ $etudiant->nci }}</td>
+                            <td>{{ $etudiant->Nom }}</td>
+                            <td>{{ $etudiant->Prenom }}</td>
+                            <td>{{ $etudiant->DateNaissance }}</td>
+                            <td>{{ $etudiant->CpLieuNaissance }}</td>
+                            <td>{{ $etudiant->Adresse }}</td>
+                            <td>{{ $etudiant->CpAdresse }}</td>
                             <td>
                                 <div class="d-inline-flex align-items-center">
                                     <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" name="button-form" data-bs-target="#editEtudiantModal" onclick="editEtudiant({{ json_encode($etudiant) }})" >

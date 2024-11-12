@@ -48,10 +48,10 @@
                             <td>{{ $note->resultat }}</td>
                             <td>
                                 <div class="d-inline-flex align-items-center">
-                                    <button class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#editNoteModal" name="button-form" onclick="editNote({{ json_encode($note) }})" >
+                                    <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#editNoteModal" name="button-form" onclick="editNote({{ json_encode($note) }})" >
                                         Modifier
                                     </button>
-                                    <button class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteNoteModal" name="button-form" onclick="deleteNote('{{ $note->nci }}')" >
+                                    <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteNoteModal" name="button-form" onclick="deleteNote('{{ $note->nci }}')" >
                                         Supprimer
                                     </button>
                                 </div>
@@ -94,8 +94,8 @@
                     @csrf
                     @method('PUT')
                     <div class="form-group">
-                        <label for="editNce">Nce</label>
-                        <input type="text" name="Nce" class="form-control" id="editNce" required readonly>
+                        <label for="editNce">Nci</label>
+                        <input type="text" name="nci" class="form-control" id="editNci" required readonly>
                     </div>
                     <div class="form-group">
                         <label for="editCodeMat">Code Matière</label>
@@ -151,13 +151,13 @@
 
 <script>
     function editNote(note) {
-        document.querySelector('#editNoteModal #editNce').value = note.Nce;
+        document.querySelector('#editNoteModal #editNci').value = note.nci;
         document.querySelector('#editNoteModal #editCodeMat').value = note.CodeMat;
         document.querySelector('#editNoteModal #editDateResultat').value = note.DateResultat;
         document.querySelector('#editNoteModal #editNoteControle').value = note.NoteControle;
         document.querySelector('#editNoteModal #editNoteExamen').value = note.NoteExamen;
         document.querySelector('#editNoteModal #editResultFinale').value = note.resultat;
-        document.querySelector('#editNoteModal form').action = '{{ route('notes.update', '') }}/' + note.Nce;
+        document.querySelector('#editNoteModal form').action = '{{ route('notes.update', '') }}/' + note.nci;
     }
 
     function deleteNote(Nce) {

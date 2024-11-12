@@ -73,9 +73,8 @@ class NoteController extends Controller
                 ->withInput();
         }
 
-        // Update the note
         DB::table('notes')
-            ->where('Nce', $nci) // Updated to match the correct column name
+            ->where('nci', $nci)
             ->update([
                 'CodeMat' => $request->CodeMat,
                 'DateResultat' => $request->DateResultat,
@@ -91,7 +90,7 @@ class NoteController extends Controller
     public function destroy(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nci' => 'required|string|exists:notes,Nce', // Make sure this matches the column name
+            'nci' => 'required|string',
         ], [
             'required' => 'Le champ :attribute est obligatoire.',
             'exists' => ':attribute n\'existe pas dans la base de données.',
@@ -103,8 +102,7 @@ class NoteController extends Controller
                 ->withInput();
         }
 
-        // Delete the note
-        DB::table('notes')->where('Nce', $request->nci)->delete(); // Updated to match the correct column name
+        DB::table('notes')->where('nci', $request->nci)->delete();
 
         return redirect()->route('notes.index')->with('success', 'Note supprimée avec succès.');
     }
