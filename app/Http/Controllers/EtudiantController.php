@@ -61,10 +61,10 @@ class EtudiantController extends Controller
         }
     }
 
-    public function update(Request $request, $Nce)
+    public function update(Request $request, $nci)
     {
         $validator = Validator::make($request->all(), [
-            'nci' => 'required|string',
+            'Nce' => 'required|string',
             'Nom' => 'required|string',
             'Prenom' => 'required|string',
             'DateNaissance' => 'required|date',
@@ -80,8 +80,8 @@ class EtudiantController extends Controller
         }
 
         try {
-            $affected = DB::table('etudiants')->where('Nce', $Nce)->update([
-                'nci' => $request->nci,
+            $affected = DB::table('etudiants')->where('nci', $nci)->update([
+                'Nce' => $request->Nce,
                 'Nom' => $request->Nom,
                 'Prenom' => $request->Prenom,
                 'DateNaissance' => $request->DateNaissance,

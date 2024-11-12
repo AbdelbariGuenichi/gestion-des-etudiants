@@ -19,7 +19,7 @@ class LoginController extends Controller
     {
         $credentials = $request->only('username', 'password');
         session(['remember_token' => $request->input('remember_token')]);
-        if (Auth::guard('admin')->attempt($credentials, false)) { // false disables "Remember Me"
+        if (Auth::guard('admin')->attempt($credentials, false)) {
             $request->session()->regenerate();
             return redirect()->route('welcome');
         }

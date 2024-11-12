@@ -98,7 +98,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="editNci">Nci</label>
-                        <input type="text" name="Nci" class="form-control" id="editNci" required>
+                        <input type="text" name="Nci" class="form-control" id="editNci" required readonly>
                     </div>
                     <div class="form-group mb-3">
                         <label for="editNom">Nom</label>
@@ -162,7 +162,7 @@ function editEtudiant(etudiant) {
     document.querySelector('#editEtudiantModal #editCpLieuNaissance').value = etudiant.CpLieuNaissance;
     document.querySelector('#editEtudiantModal #editAdresse').value = etudiant.Adresse;
     document.querySelector('#editEtudiantModal #editCpAdresse').value = etudiant.CpAdresse;
-    document.querySelector('#editEtudiantModal form').action = '{{ route('etudiants.update', '') }}/' + etudiant.Nce;
+    document.querySelector('#editEtudiantModal form').action = '{{ route('etudiants.update', '') }}/' + etudiant.nci;
 }
 
 function deleteEtudiant(Nce) {
