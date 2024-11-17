@@ -1,0 +1,158 @@
+[33mcommit a95919e72fe4090b695678a377cda46b6474900b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Sun Nov 17 19:05:22 2024 +0000
+
+    pull updates
+
+[33mcommit 9d8ad8563d561879e6aad62e384c10ef092bb727[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Tue Nov 12 14:26:00 2024 +0000
+
+    removing uncessairy files
+
+[33mcommit b74a438a5b8fb9134404420d52813436dc5fa6dc[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Tue Nov 12 14:24:08 2024 +0000
+
+    updating matiereController
+    and database config
+
+[33mcommit 6ecfc95caec779329d76d5faaf232c2909299cdc[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Tue Nov 12 12:54:52 2024 +0000
+
+    removing some bugs from the controllers
+
+[33mcommit 7e7747c1f2da37f9066bd12712a261aaa3fbd3a2[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Tue Nov 12 10:37:41 2024 +0000
+
+    removing some bugs with student page and controllers
+
+[33mcommit 99c6877750314f35d222ff7bf8642a17752f894a[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Fri Nov 8 06:51:39 2024 +0000
+
+    fixing problem on the db storing side
+
+[33mcommit 5a1754493579396b1f75286d4f3158b0ba881918[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Thu Nov 7 06:14:49 2024 +0000
+
+    removing unnecessary commented function
+
+[33mcommit fdfc0c3d663eb0bc30d7870b8ed4613205c30bfa[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Thu Nov 7 06:12:21 2024 +0000
+
+    updating the admin login feature  adding the admin authotification for pages entery
+
+[33mcommit 04d2b16be2f48183079f09ce0cb4e271de3505f9[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Wed Nov 6 15:54:57 2024 +0000
+
+    adding the admin login and logout features
+
+[33mcommit bffadaed9e30d78ac2cfe2bc1f5c04a2e25372e3[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Wed Nov 6 10:04:36 2024 +0000
+
+    removing uncessary features causing bugs
+
+[33mcommit 69e7b5f2dd0d7ea87e1d98883d56872acf1cd794[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Tue Nov 5 18:51:46 2024 +0000
+
+    updating the admin login session
+
+[33mcommit fe649f56555b14ce392623d6c6c788b81ffda40b[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Tue Nov 5 13:56:15 2024 +0000
+
+    updating some admins authorisations
+
+[33mcommit 59a8f16e81063ada485650def5970a56f74caee8[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Tue Nov 5 06:43:52 2024 +0000
+
+    updating feattures for admin and letting the people to inscpect data only
+
+[33mcommit 5445be0b4a9205b0843e08d8073218f4d4bc92a1[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Mon Nov 4 07:16:52 2024 +0000
+
+    fixing some db errors handling
+
+[33mcommit 462a98c2b666642e636283b9a3a2565edc89860a[m
+Merge: cac5916 cf235b2
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Sun Nov 3 21:33:42 2024 +0000
+
+    updating the style
+
+[33mcommit cac5916e266acfad77e6065775e19f440c2697d0[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Sun Nov 3 21:24:09 2024 +0000
+
+    updating the nav padding it was causing unreadable nav-links
+
+[33mcommit cf235b2a6045bac8518964795f924b4ab87caf92[m
+Author: Abdelbari Guenichi <abdelbariguenichi@gmail.com>
+Date:   Sun Nov 3 16:05:17 2024 +0000
+
+    Update welcome.blade.php
+
+[33mcommit 0eb27b248750978f11d28b313ae19f86b2515a69[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Sun Nov 3 15:16:49 2024 +0000
+
+    updating the tables migrations and some styles improvment
+
+[33mcommit 0bf4eb673d634f119224d165402d451ecfb79770[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Sun Nov 3 06:13:10 2024 +0000
+
+    remove some uncessary migration files
+
+[33mcommit 03e80c1d99b5492674c9dfb69b1ec3301d30e693[m
+Merge: 4ad03f3 5184553
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Sun Nov 3 05:57:06 2024 +0000
+
+    Merge branch 'master' of https://github.com/AbdelbariGuenichi/gestion-des-etudiants
+
+[33mcommit 4ad03f3f281f2109a5b9b3dfeb83e9b39946f019[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Sun Nov 3 05:57:03 2024 +0000
+
+    updating the .gitgonre
+
+[33mcommit 518455364c8c188b6f275709a7c46010843c462f[m
+Author: Abdelbari Guenichi <abdelbariguenichi@gmail.com>
+Date:   Sun Nov 3 05:55:35 2024 +0000
+
+    Update .env.example
+
+[33mcommit 0d37e3fd56f9dae5896d8e0327d46169fac2415f[m
+Author: Abdelbari Guenichi <abdelbariguenichi@gmail.com>
+Date:   Sun Nov 3 05:32:48 2024 +0000
+
+    Update .env.example
+
+[33mcommit 9ddfd324e490d5b80f5d705b8051c3ae9773061e[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Sun Nov 3 05:16:11 2024 +0000
+
+    updating and fixing some bugs
+
+[33mcommit ec9565d422193aa387145b0dbe601500da8e5dfc[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Mon Oct 28 06:42:16 2024 +0000
+
+    updaing app.blade.php
+
+[33mcommit 0c24f51b7e11ab7aecb7b8ec45c50dff0db46710[m
+Author: Abdelbari Ben Kamel <abdelbariguenichi@gmail.com>
+Date:   Mon Oct 28 06:23:44 2024 +0000
+
+    Initial commit
