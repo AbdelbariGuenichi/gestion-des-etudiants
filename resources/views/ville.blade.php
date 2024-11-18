@@ -4,7 +4,7 @@
 @section('content')
 <h1 class="text-center">Liste des Villes</h1>
 <div class="d-flex justify-content-center mb-4">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#villeModal" >Ajouter une Ville</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#villeModal">Ajouter une Ville</button>
 </div>
 <div class="container mt-5">
     @if(session('error'))
@@ -41,12 +41,12 @@
                         <td>
                             <div class="d-inline-flex align-items-center">
                                 <!-- Edit Button -->
-                                <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#editVilleModal{{ $ville->id }}" >
+                                <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#editVilleModal{{ $ville->id }}">
                                     Modifier
                                 </button>
 
                                 <!-- Delete Button -->
-                                <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteVilleModal{{ $ville->id }}" >
+                                <button class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteVilleModal{{ $ville->id }}">
                                     Supprimer
                                 </button>
                             </div>
@@ -117,18 +117,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('villes.store') }}">
-                    @csrf
-                    <div class="form-group">
-                        <label for="cpVilles">Code Postal</label>
-                        <input type="text" name="cpVilles" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="DesignationVilles">Désignation</label>
-                        <input type="text" name="DesignationVilles" class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-3">Enregistrer</button>
-                </form>
+                @include('forms.ville-form')
             </div>
         </div>
     </div>

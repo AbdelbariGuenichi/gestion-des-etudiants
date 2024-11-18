@@ -1,19 +1,19 @@
 <?php
+
 namespace App\Http\Controllers;
 
+use App\Models\Etudiant;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Database\QueryException;
 
 class EtudiantController extends Controller
 {
     public function index()
     {
         try {
-            $etudiants = DB::table('etudiants')->get();
+            $etudiants = Etudiant::all();
             return view('etudiant', compact('etudiants'));
-        } catch (QueryException $e) {
+        } catch (\Exception $e) {
             return redirect()->route('etudiants.index')->with('error', 'Erreur de chargement des étudiants.');
         }
     }
@@ -43,20 +43,9 @@ class EtudiantController extends Controller
         }
 
         try {
-            DB::table('etudiants')->insert([
-                'Nce' => $request->Nce,
-                'nci' => $request->nci,
-                'Nom' => $request->Nom,
-                'Prenom' => $request->Prenom,
-                'DateNaissance' => $request->DateNaissance,
-                'CpLieuNaissance' => $request->CpLieuNaissance,
-                'Adresse' => $request->Adresse,
-                'CpAdresse' => $request->CpAdresse,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+            Etudiant::create($request->all());
             return redirect()->route('etudiants.index')->with('success', 'Étudiant ajouté avec succès.');
-        } catch (QueryException $e) {
+        } catch (\Exception $e) {
             return redirect()->route('etudiants.index')->with('error', 'Erreur lors de l\'ajout de l\'étudiant.');
         }
     }
@@ -80,23 +69,11 @@ class EtudiantController extends Controller
         }
 
         try {
-            $affected = DB::table('etudiants')->where('nci', $nci)->update([
-                'Nce' => $request->Nce,
-                'Nom' => $request->Nom,
-                'Prenom' => $request->Prenom,
-                'DateNaissance' => $request->DateNaissance,
-                'CpLieuNaissance' => $request->CpLieuNaissance,
-                'Adresse' => $request->Adresse,
-                'CpAdresse' => $request->CpAdresse,
-                'updated_at' => now(),
-            ]);
+            $etudiant = Etudiant::where('nci', $nci)->firstOrFail();
+            $etudiant->update($request->all());
 
-            if ($affected) {
-                return redirect()->route('etudiants.index')->with('success', 'Étudiant modifié avec succès.');
-            } else {
-                return redirect()->route('etudiants.index')->with('error', 'Étudiant non trouvé.');
-            }
-        } catch (QueryException $e) {
+            return redirect()->route('etudiants.index')->with('success', 'Étudiant modifié avec succès.');
+        } catch (\Exception $e) {
             return redirect()->route('etudiants.index')->with('error', 'Erreur lors de la modification de l\'étudiant.');
         }
     }
@@ -104,14 +81,11 @@ class EtudiantController extends Controller
     public function destroy($Nce)
     {
         try {
-            $deleted = DB::table('etudiants')->where('Nce', $Nce)->delete();
+            $etudiant = Etudiant::where('Nce', $Nce)->firstOrFail();
+            $etudiant->delete();
 
-            if ($deleted) {
-                return redirect()->route('etudiants.index')->with('success', 'Étudiant supprimé avec succès.');
-            } else {
-                return redirect()->route('etudiants.index')->with('error', 'Étudiant non trouvé.');
-            }
-        } catch (QueryException $e) {
+            return redirect()->route('etudiants.index')->with('success', 'Étudiant supprimé avec succès.');
+        } catch (\Exception $e) {
             return redirect()->route('etudiants.index')->with('error', 'Erreur lors de la suppression de l\'étudiant.');
         }
     }

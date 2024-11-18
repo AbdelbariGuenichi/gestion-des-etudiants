@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Exception;
+use App\Models\Specialite;
 
 class SpecialiteController extends Controller
 {
     public function index()
     {
-        $specialites = DB::table('specialites')->get();
+        $specialites = Specialite::all();
         return view('specialite', compact('specialites'));
     }
 
@@ -33,11 +33,9 @@ class SpecialiteController extends Controller
         }
 
         try {
-            DB::table('specialites')->insert([
+            Specialite::create([
                 'CodeSp' => $request->CodeSp,
                 'DesignationSp' => $request->DesignationSp,
-                'created_at' => now(),
-                'updated_at' => now(),
             ]);
 
             return redirect()->route('specialites.index')->with('success', 'Spécialité ajoutée avec succès.');
@@ -46,10 +44,10 @@ class SpecialiteController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $CodeSp)
     {
         $validator = Validator::make($request->all(), [
-            'CodeSp' => 'required|string|unique:specialites,CodeSp,' . $id . ',CodeSp',
+            'CodeSp' => 'required|string|unique:specialites,CodeSp,' . $CodeSp . ',CodeSp',
             'DesignationSp' => 'required|string',
         ]);
 
@@ -60,9 +58,9 @@ class SpecialiteController extends Controller
         }
 
         try {
-            DB::table('specialites')->where('CodeSp', $id)->update([
+            $specialite = Specialite::findOrFail($CodeSp);
+            $specialite->update([
                 'DesignationSp' => $request->DesignationSp,
-                'updated_at' => now(),
             ]);
 
             return redirect()->route('specialites.index')->with('success', 'Spécialité modifiée avec succès.');
@@ -71,24 +69,20 @@ class SpecialiteController extends Controller
         }
     }
 
-    public function destroy($id)
-    {
-        try {
-            $relatedMatieres = DB::table('matieres')->where('CodeSp', $id)->exists();
+    public function destroy($CodeSp)
+{
+    try {
+        $specialite = Specialite::where('CodeSp', $CodeSp)->first();
 
-            if ($relatedMatieres) {
-                return redirect()->route('specialites.index')->with('error', 'Impossible de supprimer cette spécialité car elle est liée à des matières.');
-            }
-
-            $deleted = DB::table('specialites')->where('CodeSp', $id)->delete();
-
-            if ($deleted) {
-                return redirect()->route('specialites.index')->with('success', 'Spécialité supprimée avec succès.');
-            } else {
-                return redirect()->route('specialites.index')->with('error', 'La spécialité spécifiée est introuvable.');
-            }
-        } catch (Exception $e) {
-            return redirect()->route('specialites.index')->with('error', 'Erreur lors de la suppression de la spécialité.');
+        if (!$specialite) {
+            return redirect()->route('specialites.index')->with('error', 'Spécialité introuvable.');
         }
+
+        $specialite->delete();
+        return redirect()->route('specialites.index')->with('success', 'Spécialité supprimée avec succès.');
+    } catch (Exception $e) {
+        return redirect()->route('specialites.index')->with('error', 'Erreur lors de la suppression.');
     }
+}
+
 }

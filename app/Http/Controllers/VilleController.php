@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ville;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class VilleController extends Controller
 {
     public function index()
     {
-        $villes = DB::table('villes')->get();
+        $villes = Ville::all();
         return view('ville', compact('villes'));
     }
 
@@ -30,11 +30,9 @@ class VilleController extends Controller
                 ->withInput();
         }
 
-        DB::table('villes')->insert([
+        Ville::create([
             'cpVilles' => $request->cpVilles,
             'DesignationVilles' => $request->DesignationVilles,
-            'created_at' => now(),
-            'updated_at' => now(),
         ]);
 
         return redirect()->route('villes.index')->with('success', 'Ville ajoutée avec succès.');
@@ -53,10 +51,10 @@ class VilleController extends Controller
                 ->withInput();
         }
 
-        DB::table('villes')->where('id', $id)->update([
+        $ville = Ville::findOrFail($id);
+        $ville->update([
             'cpVilles' => $request->cpVilles,
             'DesignationVilles' => $request->DesignationVilles,
-            'updated_at' => now(),
         ]);
 
         return redirect()->route('villes.index')->with('success', 'Ville modifiée avec succès.');
@@ -64,7 +62,9 @@ class VilleController extends Controller
 
     public function destroy($id)
     {
-        DB::table('villes')->where('id', $id)->delete();
+        $ville = Ville::findOrFail($id);
+        $ville->delete();
+
         return redirect()->route('villes.index')->with('success', 'Ville supprimée avec succès.');
     }
 }

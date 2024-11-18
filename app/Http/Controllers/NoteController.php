@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Note;
 use Illuminate\Support\Facades\Validator;
 
 class NoteController extends Controller
 {
     public function index()
     {
-        $notes = DB::table('notes')->get();
+        $notes = Note::all(); // Fetch all notes using the model
         return view('note', compact('notes'));
     }
 
@@ -37,16 +37,7 @@ class NoteController extends Controller
                 ->withInput();
         }
 
-        DB::table('notes')->insert([
-            'nci' => $request->nci, // Updated to match the correct column name
-            'CodeMat' => $request->CodeMat,
-            'DateResultat' => $request->DateResultat,
-            'NoteControle' => $request->NoteControle,
-            'NoteExamen' => $request->NoteExamen,
-            'resultat' => $request->resultat,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        Note::create($request->all()); // Use model to insert data
 
         return redirect()->route('notes.index')->with('success', 'Note enregistrée avec succès.');
     }
@@ -73,16 +64,13 @@ class NoteController extends Controller
                 ->withInput();
         }
 
-        DB::table('notes')
-            ->where('nci', $nci)
-            ->update([
-                'CodeMat' => $request->CodeMat,
-                'DateResultat' => $request->DateResultat,
-                'NoteControle' => $request->NoteControle,
-                'NoteExamen' => $request->NoteExamen,
-                'resultat' => $request->resultat,
-                'updated_at' => now(),
-            ]);
+        $note = Note::find($nci); // Fetch note by primary key
+
+        if (!$note) {
+            return redirect()->route('notes.index')->with('error', 'Note introuvable.');
+        }
+
+        $note->update($request->all()); // Update note using model
 
         return redirect()->route('notes.index')->with('success', 'Note modifiée avec succès.');
     }
@@ -93,7 +81,6 @@ class NoteController extends Controller
             'nci' => 'required|string',
         ], [
             'required' => 'Le champ :attribute est obligatoire.',
-            'exists' => ':attribute n\'existe pas dans la base de données.',
         ]);
 
         if ($validator->fails()) {
@@ -102,7 +89,13 @@ class NoteController extends Controller
                 ->withInput();
         }
 
-        DB::table('notes')->where('nci', $request->nci)->delete();
+        $note = Note::find($request->nci); // Fetch note by primary key
+
+        if (!$note) {
+            return redirect()->route('notes.index')->with('error', 'Note introuvable.');
+        }
+
+        $note->delete(); // Delete note using model
 
         return redirect()->route('notes.index')->with('success', 'Note supprimée avec succès.');
     }

@@ -4,7 +4,7 @@
 @section('content')
 <h1 class="text-center mt-5">Liste des Notes</h1>
 <div class="d-flex justify-content-center mb-4">
-    <button class="btn btn-primary" data-bs-toggle="modal" name="button-form" data-bs-target="#noteModal">Ajouter un Note</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" name="button-form" data-bs-target="#noteModal">Ajouter une Note</button>
 </div>
 <div class="container mt-4">
     @if(session('error'))
@@ -94,7 +94,7 @@
                     @csrf
                     @method('PUT')
                     <div class="form-group">
-                        <label for="editNce">Nci</label>
+                        <label for="editNci">Nci</label>
                         <input type="text" name="nci" class="form-control" id="editNci" required readonly>
                     </div>
                     <div class="form-group">
@@ -137,17 +137,16 @@
             </div>
             <div class="modal-body">
                 <p>Êtes-vous sûr de vouloir supprimer cette note?</p>
-                <form id="deleteNoteForm" method="POST" action="{{ route('notes.destroy', 'delete') }}">
+                <form id="deleteNoteForm" method="POST" action="">
                     @csrf
                     @method('DELETE')
-                    <input type="hidden" name="Nce" id="deleteNoteNce">
+                    <input type="hidden" name="nci" id="deleteNoteNci">
                     <button type="submit" class="btn btn-danger mt-3">Supprimer</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
 
 <script>
     function editNote(note) {
@@ -160,10 +159,10 @@
         document.querySelector('#editNoteModal form').action = '{{ route('notes.update', '') }}/' + note.nci;
     }
 
-    function deleteNote(Nce) {
-        document.getElementById('deleteNoteNce').value = Nce;
+    function deleteNote(nci) {
+        document.getElementById('deleteNoteNci').value = nci;
+        document.getElementById('deleteNoteForm').action = '{{ route('notes.destroy', '') }}/' + nci;
     }
 </script>
 
 @endsection
-

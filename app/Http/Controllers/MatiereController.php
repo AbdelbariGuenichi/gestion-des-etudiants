@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Matiere;
 use Illuminate\Support\Facades\Log;
 use Exception;
 
@@ -12,7 +12,7 @@ class MatiereController extends Controller
     public function index()
     {
         try {
-            $matieres = DB::table('matieres')->get();
+            $matieres = Matiere::all(); // Fetch all records using the model
             return view('matiere', ['matieres' => $matieres]);
         } catch (Exception $e) {
             Log::error('Error fetching matieres: ' . $e->getMessage());
@@ -31,11 +31,7 @@ class MatiereController extends Controller
                 'credit' => 'required|numeric',
             ]);
 
-            DB::table('matieres')->insert(array_merge($validatedData, [
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]));
-
+            Matiere::create($validatedData); // Insert data using the model
             return redirect()->route('matieres.index')->with('success', 'Matière ajoutée avec succès');
         } catch (Exception $e) {
             Log::error('Error adding matiere: ' . $e->getMessage());
@@ -54,13 +50,13 @@ class MatiereController extends Controller
                 'credit' => 'required|numeric',
             ]);
 
-            $updated = DB::table('matieres')->where('CodeMat', $CodeMat)->update($validatedData);
-
-            if ($updated) {
-                return redirect()->route('matieres.index')->with('success', 'Matière mise à jour avec succès');
-            } else {
-                return redirect()->route('matieres.index')->with('error', 'Matière introuvable ou aucune modification apportée.');
+            $matiere = Matiere::find($CodeMat); // Find by primary key
+            if (!$matiere) {
+                return redirect()->route('matieres.index')->with('error', 'Matière introuvable.');
             }
+
+            $matiere->update($validatedData); // Update the record
+            return redirect()->route('matieres.index')->with('success', 'Matière mise à jour avec succès');
         } catch (Exception $e) {
             Log::error('Error updating matiere: ' . $e->getMessage());
             return redirect()->back()->withInput()->with('error', 'Une erreur est survenue lors de la mise à jour de la matière.');
@@ -76,13 +72,13 @@ class MatiereController extends Controller
                 return redirect()->route('matieres.index')->with('error', 'L\'identifiant de la matière n\'a pas été fourni.');
             }
 
-            $deleted = DB::table('matieres')->where('CodeMat', $CodeMat)->delete();
-
-            if ($deleted) {
-                return redirect()->route('matieres.index')->with('success', 'Matière supprimée avec succès');
-            } else {
+            $matiere = Matiere::find($CodeMat); // Find by primary key
+            if (!$matiere) {
                 return redirect()->route('matieres.index')->with('error', 'Matière introuvable.');
             }
+
+            $matiere->delete(); // Delete the record
+            return redirect()->route('matieres.index')->with('success', 'Matière supprimée avec succès');
         } catch (Exception $e) {
             Log::error('Error deleting matiere: ' . $e->getMessage());
             return redirect()->route('matieres.index')->with('error', 'Une erreur est survenue lors de la suppression de la matière.');
