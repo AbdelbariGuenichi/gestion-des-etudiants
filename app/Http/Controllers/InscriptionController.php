@@ -17,30 +17,60 @@ class InscriptionController extends Controller
 
     public function store(Request $request)
     {
+        try {
+            $validator = Validator::make($request->all(), [
+                'nci' => 'required|string|max:255',
+                'CodeSp' => 'required|string|max:255',
+                'DateInscription' => 'required|date',
+                'niveau' => 'required|string|max:255',
+                'resultatFinale' => 'required|string|max:255',
+                'Mention' => 'required|string|max:255',
+            ]);
 
-        $validator = Validator::make($request->all(), [
-            'nci' => 'required|string|max:255',
-            'CodeSp' => 'required|string|max:255',
-            'DateInscription' => 'required|date',
-            'niveau' => 'required|string|max:255',
-            'resultatFinale' => 'required|string|max:255',
-            'Mention' => 'required|string|max:255',
-        ]);
+            if ($validator->fails()) {
+                return redirect()->route('inscriptions.index')
+                    ->withErrors($validator)
+                    ->withInput();
+            }
 
-        if ($validator->fails()) {
-            return redirect()->route('inscriptions.index')->withErrors($validator)->withInput();
+            DB::beginTransaction();
+            
+            Inscription::create([
+                'nci' => $request->nci,
+                'CodeSp' => $request->CodeSp,
+                'DateInscription' => $request->DateInscription,
+                'niveau' => $request->niveau,
+                'resultatFinale' => $request->resultatFinale,
+                'Mention' => $request->Mention,
+            ]);
+
+            DB::commit();
+            return redirect()->route('inscriptions.index')
+                ->with('success', 'Inscription ajoutée avec succès.');
+                
+        } catch (\Illuminate\Database\QueryException $e) {
+            DB::rollBack();
+            $errorCode = $e->errorInfo[1];
+            
+            if($errorCode == 1062) {
+                return redirect()->route('inscriptions.index')
+                    ->with('error', 'Cette inscription existe déjà.')
+                    ->withInput();
+            } else if($errorCode == 1452) {
+                return redirect()->route('inscriptions.index')
+                    ->with('error', 'L\'étudiant ou la spécialité n\'existe pas.')
+                    ->withInput();
+            }
+            
+            return redirect()->route('inscriptions.index')
+                ->with('error', 'Une erreur est survenue lors de l\'ajout de l\'inscription.')
+                ->withInput();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('inscriptions.index')
+                ->with('error', 'Une erreur inattendue est survenue.')
+                ->withInput();
         }
-
-        Inscription::create([
-            'nci' => $request->nci,
-            'CodeSp' => $request->CodeSp,
-            'DateInscription' => $request->DateInscription,
-            'niveau' => $request->niveau,
-            'resultatFinale' => $request->resultatFinale,
-            'Mention' => $request->Mention,
-        ]);
-
-        return redirect()->route('inscriptions.index')->with('success', 'Inscription ajoutée avec succès.');
     }
 
     public function update(Request $request, $nci)

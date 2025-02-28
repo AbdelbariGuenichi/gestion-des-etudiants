@@ -3,10 +3,12 @@
 
 @section('content')
 <h1 class="text-center">Liste des Villes</h1>
-<div class="d-flex justify-content-center mb-4">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addVilleModal">Ajouter une Ville</button>
-</div>
 <div class="container mt-5">
+    @include('partials.sql-errors')
+    
+    <div class="d-flex justify-content-center mb-4">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addVilleModal">Ajouter une Ville</button>
+    </div>
     @if(session('error'))
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif

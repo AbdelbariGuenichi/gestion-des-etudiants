@@ -4,6 +4,8 @@
 @section('content')
 <h1>Liste des Matières</h1>
 <div class="container mt-5">
+    @include('partials.sql-errors')
+    
     @if(session('error'))
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif

@@ -7,6 +7,7 @@
     <button class="btn btn-primary" data-bs-toggle="modal" name="button-form" data-bs-target="#noteModal">Ajouter une Note</button>
 </div>
 <div class="container mt-4">
+    @include('partials.sql-errors')
     @if(session('error'))
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif

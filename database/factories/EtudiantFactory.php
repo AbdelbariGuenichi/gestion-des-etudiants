@@ -16,9 +16,9 @@ class EtudiantFactory extends Factory
             'Nom' => $this->faker->lastName(),
             'Prenom' => $this->faker->firstName(),
             'DateNaissance' => $this->faker->date('Y-m-d', '-18 years'),
-            'CpLieuNaissance' => $this->faker->numberBetween(1000, 9999),
+            'CpLieuNaissance' => '5000',
             'Adresse' => $this->faker->streetAddress(),
-            'CpAdresse' => $this->faker->numberBetween(1000, 9999),
+            'CpAdresse' => '5000',
         ];
     }
 }

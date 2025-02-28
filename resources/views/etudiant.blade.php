@@ -1,8 +1,11 @@
 @extends('layouts.app')
-@section('title', 'Etudiants')
+<title>@yield('title', 'Etudiants')</title>
+
 @section('content')
 <div class="container mt-5">
     <h1 class="text-center my-5">Liste des Étudiants</h1>
+
+    @include('partials.sql-errors')
 
     @if(session('error'))
         <div class="alert alert-danger text-center">{{ session('error') }}</div>

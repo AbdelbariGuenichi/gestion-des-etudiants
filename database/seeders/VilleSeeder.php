@@ -13,6 +13,13 @@ class VilleSeeder extends Seeder
      */
     public function run(): void
     {
-        Ville::factory()->count(10)->create();
-     }
+        // Create a specific ville with postal code 5000 first
+        Ville::create([
+            'cpVilles' => '5000',
+            'DesignationVilles' => 'Ville Principale',
+        ]);
+
+        // Create additional random villes
+        Ville::factory()->count(9)->create();
+    }
 }
